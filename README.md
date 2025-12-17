@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Microck/anonq">
-    <img src="public/quarzite.svg" alt="logo" width="200" style="filter: brightness(0) invert(1);" />
+    <img src="public/quarzitew.png" alt="logo" width="200" style="color:#fff;" />
   </a>
 </p>
 
