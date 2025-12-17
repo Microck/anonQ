@@ -1,10 +1,10 @@
 <p align="center">
   <a href="https://github.com/Microck/anonq">
-    <img src="?" alt="logo" width="200">
+    <img src="public/quarzite.png" alt="logo" width="200" style="filter: invert(1);" />
   </a>
 </p>
 
-<p align="center">a self-hostable anonymous q&a platform. visitors ask questions, you answer publicly. like ngl.link but you own the data.</p>
+<p align="center">a self-hostable anonymous q&a platform. visitors ask questions, you answer publicly.</p>
 
 <p align="center">
   <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-O'Saasy-pink.svg" /></a>
@@ -32,8 +32,6 @@ cp .env.example .env
 # run it
 npm run dev
 ```
-
-open `http://localhost:3000` and start asking questions.
 
 ---
 
@@ -75,16 +73,30 @@ the flow is straightforward:
 4.  **admin answers:** login to dashboard, read question, type answer, publish.
 5.  **public sees it:** answered q&a pairs appear on the homepage feed.
 
-```
-visitor                    anonq                      admin
-   |                         |                          |
-   |-- submit question ----->|                          |
-   |                         |-- store in supabase ---->|
-   |                         |-- push notification ---->|
-   |                         |                          |
-   |                         |<---- answer question ----|
-   |                         |                          |
-   |<-- view public feed ----|                          |
+```mermaid
+flowchart LR
+    subgraph Visitor
+        A[Write Question] --> B{Rewrite?}
+        B -->|Yes| C[AI Disguises Style]
+        C --> D[Submit]
+        B -->|No| D
+    end
+    subgraph Backend
+        D --> E[(Supabase)]
+        E --> F[ntfy Push]
+    end
+    subgraph Admin
+        F -.-> G[Notification]
+        G --> H[Login to Dashboard]
+        H --> I[Read Question]
+        I --> J[Write Answer]
+        J --> K[Publish]
+        K --> E
+    end
+    subgraph Public
+        E --> L[Homepage Feed]
+        L --> M[View Q&A]
+    end
 ```
 
 ---
