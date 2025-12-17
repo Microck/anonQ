@@ -254,6 +254,9 @@ npm start
 
 the q&a will appear on the public feed immediately.
 
+<img width="1280" height="1280" alt="processed_screenshot" src="https://github.com/user-attachments/assets/837592de-33cb-494e-bbd1-f33a34725add" />
+
+
 ---
 
 ### troubleshooting
